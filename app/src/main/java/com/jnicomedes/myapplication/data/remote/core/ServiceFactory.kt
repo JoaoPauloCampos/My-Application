@@ -11,7 +11,7 @@ import retrofit2.create
 import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit
 
-const val BASE_URL = "https://api.flickr.com/services/"
+const val BASE_URL = "https://cdn.faire.com/static/"
 
 object ServiceFactory {
 

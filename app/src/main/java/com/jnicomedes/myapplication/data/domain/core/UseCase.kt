@@ -1,13 +1,11 @@
 package com.jnicomedes.myapplication.data.domain.core
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
-import org.koin.java.KoinJavaComponent.inject
 
-abstract class UseCase<out T, in Params>(private val contextProvider: ThreadContextProvider) : KoinComponent {
+abstract class UseCase<out T, in Params>(private val contextProvider: CoroutineContextProvider) : KoinComponent {
 
     abstract suspend fun run(params: Params? = null): Either<T, Exception>
 

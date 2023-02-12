@@ -16,15 +16,3 @@ sealed class Either<out S, out F> {
             is Success -> fnR(value)
         }
 }
-
-fun <A, B, C> ((A) -> B).c(f: (B) -> C): (A) -> C = {
-    f(this(it))
-}
-
-fun <T, F, S> Either<S, F>.flatMap(fn: (S) -> Either<T, F>): Either<T, F> =
-    when (this) {
-        is Either.Failure -> Either.Failure(value)
-        is Either.Success -> fn(value)
-    }
-
-fun <T, S, F> Either<S, F>.map(fn: (S) -> (T)): Either<T, F> = this.flatMap(fn.c(::success))
