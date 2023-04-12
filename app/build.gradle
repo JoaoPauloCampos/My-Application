@@ -6,6 +6,7 @@ plugins {
 
 android {
     namespace 'com.jnicomedes.myapplication'
+    testNamespace 'com.jnicomedes.myapplication'
     compileSdk 33
 
     defaultConfig {
@@ -15,7 +16,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId "com.jnicomedes.myapplication"
     }
 
     buildTypes {
@@ -63,14 +65,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
-    ext.lifecycle_version = "2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
 
     ext.koin_version= "3.3.2"
     implementation "io.insert-koin:koin-core:$koin_version"
@@ -81,11 +75,9 @@ dependencies {
     implementation "io.insert-koin:koin-android-compat:$koin_android_version"
 
     ext.retrofit2_version = "2.9.0"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
     implementation "com.squareup.okhttp3:okhttp:4.10.0"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
 
     ext.navigation_version = "2.5.3"
     implementation "androidx.navigation:navigation-compose:$navigation_version"
@@ -101,6 +93,12 @@ dependencies {
     testImplementation 'io.mockk:mockk:1.12.3'
     testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.4.2'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.4.1'
+    androidTestImplementation 'androidx.compose.ui:ui-test-manifest:1.4.1'
+    androidTestImplementation 'io.mockk:mockk-android:1.12.3'
 }
 
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {

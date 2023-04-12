@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="type_the_url">Type the URL:</string>
+    <string name="original_url">Original URL: %1s</string>
+    <string name="shortened_url">Short URL: %1s</string>
+    <string name="invalid_input_error">Oops! Required field!</string>
+    <string name="generic_error">Oops! Something went wrong!</string>
 </resources>

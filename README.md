@@ -19,7 +19,6 @@ The data layer is split between domain and remote.
 
 ### 3rd party libraries:
 https://mockk.io/
-https://github.com/coil-kt/coil
 https://insert-koin.io/
 https://square.github.io/retrofit/
 

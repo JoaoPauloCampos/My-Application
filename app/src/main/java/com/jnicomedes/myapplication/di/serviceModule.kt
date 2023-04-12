@@ -2,7 +2,8 @@ package com.jnicomedes.myapplication.di
 
 import com.jnicomedes.myapplication.data.remote.core.BASE_URL
 import com.jnicomedes.myapplication.data.remote.core.ServiceFactory
-import com.jnicomedes.myapplication.data.remote.service.WeatherService
+import com.jnicomedes.myapplication.data.remote.core.ServiceFactory.createWebService
+import com.jnicomedes.myapplication.data.remote.service.UrlShortenerService
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
@@ -13,9 +14,6 @@ val serviceModule = module {
     }
 
     factory {
-        ServiceFactory.createWebService(
-            url = BASE_URL,
-            okHttpClient = get()
-        ) as WeatherService
-    } bind WeatherService::class
+        BASE_URL.createWebService(okHttpClient = get()) as UrlShortenerService
+    } bind UrlShortenerService::class
 }

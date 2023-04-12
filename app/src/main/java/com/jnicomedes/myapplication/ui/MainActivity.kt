@@ -9,7 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jnicomedes.myapplication.ui.theme.MyComposeApplicationTheme
-import com.jnicomedes.myapplication.ui.weather.WeatherScreen
+import com.jnicomedes.myapplication.ui.url_shortener.UrlShortenerScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
 fun Navigation(navController: NavHostController) {
     NavHost(navController, startDestination = "home") {
         composable("home") {
-            WeatherScreen()
+            UrlShortenerScreen()
         }
     }
 }
