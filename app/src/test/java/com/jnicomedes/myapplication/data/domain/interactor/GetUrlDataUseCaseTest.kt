@@ -59,13 +59,27 @@ internal class GetUrlDataUseCaseTest {
         }
 
     @Test
-    fun `WHEN getShortenedUrlUseCase is called without param THEN result MUST BE Failure`() =
+    fun `WHEN getShortenedUrlUseCase is called with null param THEN result MUST BE Failure`() =
         runBlocking {
             // GIVEN
             val getShortenedUrlUseCase = GetShortenedUrlUseCase(urlShortenerRepository, contextProvider)
 
             // WHEN
             val result = getShortenedUrlUseCase.run(params = null)
+
+            // THEN
+            result.isSuccess shouldBe false
+            result.isFailure shouldBe true
+        }
+
+    @Test
+    fun `WHEN getShortenedUrlUseCase is called without param THEN result MUST BE Failure`() =
+        runBlocking {
+            // GIVEN
+            val getShortenedUrlUseCase = GetShortenedUrlUseCase(urlShortenerRepository, contextProvider)
+
+            // WHEN
+            val result = getShortenedUrlUseCase.run()
 
             // THEN
             result.isSuccess shouldBe false

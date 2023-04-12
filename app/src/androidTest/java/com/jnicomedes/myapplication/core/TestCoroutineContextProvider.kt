@@ -1,4 +1,4 @@
-package com.jnicomedes.myapplication
+package com.jnicomedes.myapplication.core
 
 import com.jnicomedes.myapplication.data.domain.core.CoroutineContextProvider
 import kotlinx.coroutines.Dispatchers

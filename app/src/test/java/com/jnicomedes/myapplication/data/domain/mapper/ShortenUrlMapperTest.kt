@@ -11,7 +11,7 @@ import io.mockk.mockk
 import org.junit.Test
 
 
-internal class UrlDataMapperKtTest {
+internal class ShortenUrlMapperTest {
 
     @Test
     fun `GIVEN a valid ShortenUrlRemote WHEN toDomain() is called THEN result MUST be a valid object`() {

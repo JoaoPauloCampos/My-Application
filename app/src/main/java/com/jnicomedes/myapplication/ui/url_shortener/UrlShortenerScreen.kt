@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.jnicomedes.myapplication.R
@@ -71,7 +72,7 @@ fun SearchScreen(viewModel: UrlShortenerViewModel) {
             ) {
                 viewModel.setInputText(it)
             }
-            SearchButton(isEnabled = isHidedLoading) {
+            ShortenUrlButton(isEnabled = isHidedLoading) {
                 keyboardController?.hide()
                 viewModel.shortenUrl()
             }
@@ -95,7 +96,8 @@ fun SearchBar(
         TextField(
             modifier = Modifier
                 .border(1.dp, Color.LightGray, CircleShape)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .testTag("UrlTextField"),
             value = searchText,
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
@@ -124,14 +126,16 @@ fun SearchBar(
                 text = stringResource(id = errorMessage),
                 color = MaterialTheme.colors.error,
                 style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(start = 16.dp)
+                modifier = Modifier
+                    .padding(start = 16.dp)
+                    .testTag("TextError")
             )
         }
     }
 }
 
 @Composable
-fun SearchButton(
+fun ShortenUrlButton(
     isEnabled: Boolean,
     onClick: () -> Unit
 ) {
@@ -141,7 +145,8 @@ fun SearchButton(
         modifier = Modifier
             .padding(start = 8.dp)
             .height(50.dp)
-            .width(50.dp),
+            .width(50.dp)
+            .testTag("ShortenUrlButton"),
         shape = RoundedCornerShape(50),
     ) {
         if (isEnabled)
@@ -162,6 +167,7 @@ fun UrlList(urlList: List<UrlData>) {
                 modifier = Modifier
                     .padding(horizontal = 16.dp, vertical = 8.dp)
                     .border(1.dp, Color.LightGray, shape = CircleShape)
+                    .testTag("UrlCardItem")
             ) {
                 Column(
                     modifier = Modifier
@@ -170,11 +176,15 @@ fun UrlList(urlList: List<UrlData>) {
                 ) {
                     Text(
                         text = stringResource(id = R.string.original_url, item.originalUrl),
-                        modifier = Modifier.padding(vertical = 4.dp)
+                        modifier = Modifier
+                            .padding(vertical = 4.dp)
+                            .testTag("OriginalUrl")
                     )
                     Text(
                         text = stringResource(id = R.string.shortened_url, item.shortenedUrl),
-                        modifier = Modifier.padding(vertical = 4.dp)
+                        modifier = Modifier
+                            .padding(vertical = 4.dp)
+                            .testTag("ShortUrl")
                     )
                 }
             }

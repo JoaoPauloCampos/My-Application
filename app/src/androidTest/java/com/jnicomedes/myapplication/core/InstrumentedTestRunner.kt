@@ -1,4 +1,4 @@
-package com.jnicomedes.myapplication
+package com.jnicomedes.myapplication.core
 
 import android.app.Application
 import android.content.Context

@@ -26,6 +26,17 @@ https://square.github.io/retrofit/
 - Unzip the project and open the project on Android Studio
 - Sync the project
 - Run
+- Important information about how the app works:
+  Due to the problem with the public API not working, I used apiary.io to create a fake service, always returning the
+  same data structure, regardless of the url sent.
+  I left the URL of url-shortener/local-server commented out.
+  For the app to work pointing to the local server you need to configure the app to accept protocol
+  http https://developer.android.com/training/articles/security-config.
 
 ### Unit Tests
+
 ./gradlew testDebugUnitTest
+
+### Instrumented Tests
+
+./gradlew :app:connectedDebugAndroidTest

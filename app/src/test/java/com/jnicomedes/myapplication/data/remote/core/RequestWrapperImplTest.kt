@@ -8,8 +8,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
 
-class RequestWrapperTest {
-
+internal class RequestWrapperImplTest {
     private val requestWrapper: RequestWrapper = RequestWrapperImpl()
 
     @Test
