@@ -5,18 +5,18 @@ plugins {
 }
 
 android {
-    namespace 'com.jnicomedes.myapplication'
+    namespace 'com.challenge.myapplication'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.jnicomedes.myapplication"
+        applicationId "com.challenge.myapplication"
         minSdk 21
         targetSdk 33
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "com.jnicomedes.myapplication.core.InstrumentedTestRunner"
-        testApplicationId "com.jnicomedes.myapplication.test"
+        testInstrumentationRunner "com.challenge.myapplication.core.InstrumentedTestRunner"
+        testApplicationId "com.challenge.myapplication.test"
     }
 
     buildTypes {
