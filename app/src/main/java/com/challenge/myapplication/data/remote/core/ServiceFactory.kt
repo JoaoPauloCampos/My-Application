@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit
 
 //const val BASE_URL = "https://url-shortener-nu.herokuapp.com/"
 const val BASE_URL = "https://private-5acb67-nubanktest.apiary-mock.com/"
+const val BASE_URL_2 = "https://my-app.firebaseio.com/"
 //const val BASE_URL = "http://10.0.2.2:3000/"
 
 object ServiceFactory {

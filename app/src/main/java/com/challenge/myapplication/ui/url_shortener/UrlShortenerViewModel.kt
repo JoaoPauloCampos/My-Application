@@ -1,5 +1,6 @@
 package com.challenge.myapplication.ui.url_shortener
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -7,11 +8,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.challenge.myapplication.R
 import com.challenge.myapplication.data.domain.interactor.GetShortenedUrlUseCase
+import com.challenge.myapplication.data.domain.interactor.GetUser
 import com.challenge.myapplication.data.domain.model.UrlData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class UrlShortenerViewModel(private val getShortenedUrlUseCase: GetShortenedUrlUseCase) : ViewModel() {
+class UrlShortenerViewModel(
+    private val getShortenedUrlUseCase: GetShortenedUrlUseCase,
+    private val getUserUseCase: GetUser
+) : ViewModel() {
 
     private val _urlList = MutableStateFlow<MutableList<UrlData>>(mutableStateListOf())
     val urlList get() = _urlList
@@ -25,6 +30,22 @@ class UrlShortenerViewModel(private val getShortenedUrlUseCase: GetShortenedUrlU
 
     fun setInputText(text: String) {
         _inputText.value = text
+    }
+
+    init {
+        getUser()
+    }
+
+    private fun getUser() {
+        getUserUseCase(
+            scope = viewModelScope,
+            onSuccess = {
+                Log.i("Result", it.toString())
+            },
+            onError = {
+                Log.e("Result Error", it.toString())
+            }
+        )
     }
 
     fun shortenUrl() {
