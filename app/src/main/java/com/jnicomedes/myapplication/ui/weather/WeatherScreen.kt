@@ -1,6 +1,7 @@
 package com.jnicomedes.myapplication.ui.weather
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,12 +28,12 @@ import com.jnicomedes.myapplication.data.domain.model.Weather
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun WeatherScreen(viewModel: WeatherViewModel = koinViewModel()) {
+fun WeatherScreen(viewModel: WeatherViewModel = koinViewModel(), openList: () -> Unit) {
     val weatherState: WeatherState by remember { viewModel.weatherState }
     when (val state = weatherState) {
         is WeatherState.Loading -> Loading()
         is WeatherState.Error -> WeatherError(state.errorMessage)
-        is WeatherState.Success -> WeatherLayout(weather = state.data)
+        is WeatherState.Success -> WeatherLayout(weather = state.data, openList)
     }
 }
 
@@ -57,7 +58,7 @@ fun WeatherError(message: String) {
 }
 
 @Composable
-fun WeatherLayout(weather: Weather) {
+fun WeatherLayout(weather: Weather, openList: () -> Unit) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color.Transparent
@@ -78,7 +79,11 @@ fun WeatherLayout(weather: Weather) {
                     Image(
                         painter = rememberAsyncImagePainter(weather.image),
                         contentDescription = null,
-                        modifier = Modifier.size(60.dp)
+                        modifier = Modifier
+                            .size(60.dp)
+                            .clickable {
+                                openList.invoke()
+                            }
                     )
                     Text(
                         text = weather.currentTemp,

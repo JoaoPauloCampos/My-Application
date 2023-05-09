@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jnicomedes.myapplication.ui.theme.MyComposeApplicationTheme
+import com.jnicomedes.myapplication.ui.weather.ListScreen
 import com.jnicomedes.myapplication.ui.weather.WeatherScreen
 
 class MainActivity : ComponentActivity() {
@@ -29,10 +30,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Navigation(navController: NavHostController) {
-    NavHost(navController, startDestination = "home") {
-        composable("home") {
-            WeatherScreen()
-        }
+fun Navigation(navController: NavHostController, destination: String = "home") {
+    NavHost(navController, startDestination = destination) {
+        composable("home") { WeatherScreen { navController.navigate("list") } }
+        composable("list") { ListScreen { navController.navigate("home2") } }
+        composable("home2") { WeatherScreen { navController.navigate("list") } }
     }
 }
